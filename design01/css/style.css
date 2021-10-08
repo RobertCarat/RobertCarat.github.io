@@ -1,0 +1,525 @@
+/* Stylesheet für Selfhtml Design 01
+  responsives Layout mit Flexbox ab Z. 247 */
+
+/* ====================================================  GLOBAL DEFINITION  ==================================================== */
+
+/* alternatives Boxmodell */
+*, ::before, ::after {
+  box-sizing: border-box;
+}
+
+/* Farbfestlegungen nur als Fallback für IE9-11
+   custom properties für alle anderen!            */
+body {
+  max-width: 65em;
+  margin: 0 auto;
+  padding: 0 1em;
+  font: normal 1em Arial, sans-serif;
+  color: darkRed; /* wird als currentColor für die Akzentfarbe verwendet. */
+	color: var(--accent1-color);
+  background-color: #ffff00;
+	background-color: var(--background-color);
+}
+
+p, ol, ul, dl {
+	color: #333;
+  color: var(--font-color);
+}
+
+:root {
+  --background-color: #fff;
+  --background2-color: #ccc;	
+  --background3-color: #ccc;		
+  --accent1-color: darkred;
+  --accent2-color: orange;
+  --accent3-color: #fede9e;
+	--font-color: #333;
+  --font2-color: #666;
+	--link-color: darkred;		
+
+}
+
+:root.dark {
+  --background-color: #666;
+  --background2-color: #666;	
+  --background3-color: #ccc;		
+  --accent1-color: darkred;
+  --accent2-color: orange;	
+  --accent3-color: #fede9e;	
+  --font-color: #fff;
+  --font2-color: orange;		
+	--link-color: orange;		
+
+}
+
+/* ====================================================  HEADER  ==================================================== */
+
+header {
+  position: relative;
+  margin: 0;
+  padding: 1em;
+  background-color: var(--background2-color);
+}
+
+header h1 a {
+  padding: .5em .5em .5em 3em;
+  height: 3em;
+  background: url('../css/icons/about.svg') no-repeat left;
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+
+header p {
+  font-variant: small-caps;
+  font-size: 2em;
+}
+
+header span {
+  font-weight: bold;
+}
+
+.akzentfarbe1 {
+  color:orange;
+	color: var(--accent2-color);
+}
+
+.akzentfarbe2 {
+  color: darkred;
+	color: var(--accent1-color);	
+}
+
+.toggle {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+}
+
+/* ====================================================  CONTENT  ==================================================== */
+
+h1, h2 {
+  color: var(--font2-color);
+}
+
+a {
+  color: currentColor;
+  color: var(--link-color);	
+}
+a:hover, a:focus {
+  font-weight: bold;
+  background-color: var(--accent3-color);
+}
+
+a.more {
+  float: right;
+}
+a.more::before {
+  content: "►";  
+  margin-right: .5em;
+  display:inline-block;
+	text-decoration: none;    
+}
+
+a.more:hover, a.more:focus {
+  color: var(--accent1-color);
+}
+
+h2.img {
+  padding-left: 2.5em;
+}
+.img.about {
+  background: url('../css/icons/about.svg') left no-repeat;
+  background-size: 2.5em;
+}
+.img.cash {
+  background: url('../css/icons/cash.svg') left no-repeat;
+  background-size: 1.25em;
+}
+.img.group {
+  background: url('../css/icons/about.svg') left no-repeat;
+  background-size: 2.5em;
+}
+
+img, a img {
+  border: 0 none;
+}
+
+.dark img {
+    filter: brightness(.8) contrast(1.2);
+  }
+
+.grid {
+	max-width: 65em;
+  display: grid;
+	grid-template-columns: 47fr 53fr;
+	gap: 1em;
+}
+
+.grid img {width: 100%;}
+
+.landscape {width: 100%;}
+
+article > h2 {
+  clear: both;
+}
+article > h2 + p > img {
+	width: 33%;
+  float: left;
+  margin: .15em 1.5em 1.5em 0;
+}
+article > h2:nth-of-type(odd) + p > img {
+  float: right;
+  margin: .15em 0 1.5em 1.5em;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 1em 2em;
+  margin-bottom: 3em;
+}
+dl > * {
+  margin: 0;
+  padding: 0;
+}
+dt {
+  font-weight: bold;
+}
+dt::after {
+  content: ":";
+}
+
+.news {
+  background: no-repeat top .5em right .5em var(--background3-color);
+  box-shadow: -0.3em .6em .6em 0 rgba(0, 0, 0, .75);
+  padding: 0 1em 1em;
+}
+
+.news h3 {
+  color: var(--font-color);
+}
+
+.news.consultation {
+  background-image: url('../css/icons/phone.svg');
+}
+.news.info {
+  background-image: url('../css/icons/letter.svg');
+}
+
+aside ul,
+.news ul {
+  margin: 2em 0;
+  padding: 0;
+  color: var(--font-color);
+  list-style-position: inside;
+}
+
+aside ul ::marker,
+.news ul ::marker {
+  color: var(--accent2-color);
+  content: "►  ";
+  font-size: 1.5em;
+}
+
+aside li,
+.news li {
+  padding: .5em 0;
+}
+.news li span {
+  background: var(--accent2-color);
+  border-radius: 0.5em;
+    padding: 0.2em 0.7em;
+}
+aside ul {
+  color: #333;
+}
+
+.dark .news h2,
+.dark .news h3,
+.dark .news ul {
+    color: var(--background-color);
+}
+
+.dark .news a {
+    color: var(--accent1-color);
+}
+
+/* ====================================================  NAV  ==================================================== */
+
+nav ul {
+  box-shadow: -0.3em .6em .6em 0 rgba(0, 0, 0, .75);
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+nav a {
+  background-color: darkred;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  width: 95%;
+  margin: .5em 0;
+  padding: .5em 1em;
+  border-radius: .5em;
+}
+
+nav a[aria-current="page"]{
+ color: orange;
+ font-weight: bold;
+}
+
+nav a:hover,
+nav a:focus {
+  background-color: var(--accent3-color);
+  color: currentColor;
+}
+
+.dark nav a:hover,
+.dark nav a:focus {
+  color: #333;
+}
+
+
+
+nav a:hover::after ,
+nav a:focus::after{
+  color: transparent;
+}
+
+
+/* ====================================================  FOOTER  ==================================================== */
+footer {
+  background-color: var(--accent1-color);
+  box-shadow: -0.3em .6em .6em 0 rgba(0, 0, 0, .75);
+  margin: 2em 0;
+  padding: 0.5em 1em;
+  display: flex;
+}
+
+footer ul,
+footer p {
+  flex: 1 1 100%;
+          color: var(--background3-color);
+}
+
+footer ul {
+  padding-left: 0;
+  margin-left: 0;
+}
+
+footer li  {
+  list-style-type: none;
+  display: inline-block;
+  border-left: .2em solid #ccc;
+}
+footer li:first-child  {
+  border-left-color: transparent;
+}
+footer a {
+  color: var(--accent3-color);
+}
+footer a:hover, footer a:focus {
+  color: var(--accent1-color);
+}
+footer li a {
+  padding: 0 .5em 0 .7em;
+}
+footer p {
+  margin-top: 0;
+  padding-top: 0;
+  text-align: right;
+}
+
+
+/* ====================================================  LAYOUT  ==================================================== */
+
+/* Mobile first ! alle Blöcke haben 100%, Navigation unten*/
+main  {
+  padding: 1em 0;
+  margin: 2em 0;
+}
+
+/* Navigationselemente werden untereinander angezeigt */
+nav ul {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 2-Spaltenlayout mit breiterem aside */
+@media screen and (min-width: 25em) {
+  header {
+    height: 10em;
+  }
+}
+
+/* 2-Spaltenlayout mit breiterem aside */
+@media screen and (min-width: 45em) {
+  header {
+    background: var(--background2-color) url('../../img/logo-carat-head.png') no-repeat 80% bottom;
+    background-size: contain;
+  }
+
+  /* Navigation wird nebeneinander ausgerichtet. */
+  nav ul {
+    flex-direction: row;
+    background-color: darkred;
+  }
+
+  nav li {
+    margin: 0;
+    flex: 1 1 0%;
+  }
+
+  /* Main wird zum Flex-Container */
+  main {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  main > * {
+    flex: 1 100%;  /* Alle Kindelemente werden über die volle Breite dargestellt */
+  }
+
+  section {
+    flex: 1 48%;  /* Diese Elemente erhalten eine halbe Breite */
+    margin: 1%;
+  }
+}
+
+/* 2-Spaltenlayout mit breiterem aside */
+@media screen and (min-width: 58em) {
+  section, aside {
+    flex: 1 31%;  /* Diese Elemente erhalten eine Breite von 1/3.  */
+    margin: 1%;
+  }
+
+  article {
+    flex: 0 0 100%;
+    margin: 1%;
+  }
+
+/* article p, */
+  article li,
+  article blockquote {
+    max-width: 40em;
+  }
+
+  #about {
+    flex: 1 30%;
+    margin: 1%;	  
+    background-color: #eee;
+    border: 1px solid darkred;
+    padding: 1em;
+    height: 23em;
+  }
+  
+  #impressum {
+    flex: 1 60%;
+    margin: 1%;
+}
+
+  aside p {
+    margin-bottom: 3em;
+  }
+  aside p:last-child {
+    margin-bottom: 1.2em;
+  }
+}
+
+/* toggle-button für Dark Mode */
+.toggle label {
+	position: relative;
+	display: inline-block;
+	width: 7.5em;
+	height: 3.5em;
+	color: transparent;
+}
+
+.toggle label:before,
+.toggle label:after {
+	/* Mond-Icon */
+	position: absolute;
+	content:'';
+	background: skyblue url('../css/icons/moon.svg');
+  background-size: 2em 2em;
+  background-repeat: no-repeat;
+  height: 2em;
+  width: 2em;
+	border-radius: 50%;
+}
+.toggle label:before {
+  background-image: url('../css/icons/moon.svg');
+	left: 0;
+	top: 0;
+}
+
+.toggle label:after {
+  background-image: url('../css/icons/sun.svg');
+	right: -.5em;	
+	top: 0;
+}
+.toggle input {
+	display: none;
+}
+
+.toggle .slider {
+	/* Grundfläche */
+	position: absolute;
+	cursor: pointer;
+	top: .5em;
+	right: 2em;
+	width: 3em;
+	height: 1em;
+	background-color: var(--accent3-color); /* dunkel */
+	transition: all .3s ease-in-out;
+	border-radius: 1em;
+}
+
+.toggle .slider:before {
+	/* verschiebbarer Button */
+	position: absolute;
+	content:'';
+    background: var(--accent2-color);
+    background-size: 1em 1em;
+    background-repeat: no-repeat;
+    height: 1.5em;
+    width: 1.5em;
+	left: -0.25em;
+	bottom: -0.25em;
+	border-radius: 50%;
+	transition: all .3s ease-in-out;
+}
+
+.toggle input:checked + .slider {
+	background-color: #666;	/* hell */
+}
+
+.toggle input:focus + .slider {
+	background-color: pink;
+	box-shadow: 0 0 1px #5a9900;
+}
+
+.toggle input:checked + .slider:before {
+	transform: translateX(1.9em);
+}
+
+.text .slider:after {
+	/* Text vor dem FlipFlop-Schalter */
+	position: absolute;
+	content: "dunkel";
+	color: transparent;
+	font-weight: bold;
+	height: 1.6em;
+	left: -3.5em;
+	bottom: 0.2em;
+}
+
+.text input:checked + .slider:after {
+	/* Text hinter dem FlipFlop-Schalter */
+	position: absolute;
+	content: "hell";
+	color: transparent;
+	left: 4.5em;
+}
+
